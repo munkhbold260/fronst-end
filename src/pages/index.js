@@ -1,18 +1,23 @@
 import { useEffect, useState } from "react";
 
 export default function Home() {
-  const [article, setArticle] = useState([]);
+  const [data, setData] = useState();
+
   useEffect(() => {
     async function getArticle() {
-      const response = await fetch(" http:localhost:4000/api/users");
+      const response = await fetch("http://localhost:4000/api/users");
       const article = await response.json();
-      setArticle(article);
+      setData(article);
     }
+
     getArticle();
   }, []);
+
   return (
-    <>
-      <p>{article}</p>
-    </>
+    <div className="flex flex-col">
+      <p>{data?.title}</p>
+      <p>{data?.tag_list}</p>
+      <p> test</p>
+    </div>
   );
 }
